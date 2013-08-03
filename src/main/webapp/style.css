@@ -1,0 +1,56 @@
+
+#resultsFrame  {
+    width: 320px;
+    height: 800px;
+    border: none;
+}
+#header {
+    font-weight: bold;
+    font-size: large;
+}
+BODY {
+    font-family: sans-serif;
+}
+
+
+@media only screen and (max-device-width: 480px) {
+ body {
+   background: red;
+ }
+}
+
+.l4 {
+    background: blue;
+    color: white;
+}
+
+.l5 {
+    background: blue;
+    color: white;
+}
+
+.l6 {
+    background: yellow;
+    color: blue;
+}
+
+.l7 {
+    background: green;
+    color: red;
+    font-weight: bold;
+}
+
+.l8 {
+    background: red;
+    color: yellow;
+    font-size: large;
+    font-weight: bold;
+}
+
+.l9 {
+    background: red;
+    color: white;
+    font-size: larger;
+    font-weight: bold;
+}
+
