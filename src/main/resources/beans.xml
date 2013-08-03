@@ -29,8 +29,14 @@
 
 
     <context:component-scan base-package="com.webstersmalley.countdown"/>
-
-    <jdbc:embedded-database id="dataSource">
+    <bean id="dataSource"
+          class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:mem:"/>
+        <property name="username" value="cd"/>
+        <property name="password" value="cd"/>
+    </bean>
+    <jdbc:initialize-database data-source="dataSource">
         <jdbc:script location="classpath:schema.sql"/>
-    </jdbc:embedded-database>
+    </jdbc:initialize-database>
 </beans>

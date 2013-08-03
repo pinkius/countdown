@@ -17,14 +17,12 @@
 package com.webstersmalley.countdown.words;
 
 import com.webstersmalley.countdown.db.CountdownDao;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -47,35 +45,17 @@ public class WordCounter {
     public void parseResource(String location) {
         long startTime = System.currentTimeMillis();
         InputStream is = null;
-        BufferedReader br = null;
         try {
             is = getClass().getResourceAsStream(location);
-            br = new BufferedReader(new InputStreamReader(is));
-            String line = br.readLine();
-
-            while (line != null) {
-                parseLine(line);
-                line = br.readLine();
+            List<String> words = IOUtils.readLines(is);
+            for (String word : words) {
+                parseLine(word);
             }
         } catch (Exception e) {
+            logger.error("Error getting count: ", e);
             throw new RuntimeException("Error getting count: ", e);
         } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-
-                }
-            }
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-
-                }
-            }
-
-
+            IOUtils.closeQuietly(is);
         }
         long endTime = System.currentTimeMillis();
 
