@@ -101,43 +101,25 @@ public class NumbersSolver {
 
     protected Set<Node> getNodes(List<Integer> permutation) {
         Set<Node> results = new HashSet<Node>();
+        Node n1 = new IntegerNode(permutation.get(0));
         if (permutation.size() == 1) {
-            results.add(new IntegerNode(permutation.get(0)));
-        } else if (permutation.size() == 2) {
-            Node n1 = new IntegerNode(permutation.get(0));
-            Node n2 = new IntegerNode(permutation.get(1));
-            for (Operator o : Operator.values()) {
-                Node n = getNode(n1, n2, o);
-                if (n != null) {
-                    results.add(n);
-                }
-            }
+            results.add(n1);
         } else {
-            List<Integer> frontPerm = new ArrayList<Integer>();
-            frontPerm.add(permutation.get(0));
-            frontPerm.add(permutation.get(1));
-
             List<Integer> backPerm = new ArrayList<Integer>();
             backPerm.addAll(permutation);
             backPerm.remove(0);
-            backPerm.remove(0);
-
-            Set<Node> frontNodes = getNodes(frontPerm);
             Set<Node> backNodes = getNodes(backPerm);
-
-            for (Node front : frontNodes) {
-                for (Node back : backNodes) {
-                    for (Operator o : Operator.values()) {
-                        Node n = getNode(front, back, o);
-                        if (n != null) {
-                            results.add(n);
-                        }
+            for (Node n2 : backNodes) {
+                for (Operator o : Operator.values()) {
+                    Node n = getNode(n1, n2, o);
+                    if (n != null) {
+                        results.add(n);
                     }
                 }
             }
         }
-
         return results;
+
     }
 
 }

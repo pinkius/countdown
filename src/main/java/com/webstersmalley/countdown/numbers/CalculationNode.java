@@ -24,8 +24,22 @@ public class CalculationNode implements Node {
     private Operator operator;
 
     public CalculationNode(Node nodeA, Node nodeB, Operator operator) {
-        this.nodeA = nodeA;
-        this.nodeB = nodeB;
+        if (nodeA.getValue() < nodeB.getValue()) {
+            this.nodeA = nodeA;
+            this.nodeB = nodeB;
+        } else if (nodeA.getValue() > nodeB.getValue()) {
+            this.nodeA = nodeB;
+            this.nodeB = nodeA;
+        } else {
+            if (nodeA.getComplexity() < nodeB.getComplexity()) {
+                this.nodeA = nodeA;
+                this.nodeB = nodeB;
+            } else {
+                this.nodeA = nodeB;
+                this.nodeB = nodeA;
+            }
+        }
+
         this.operator = operator;
         calculate();
     }

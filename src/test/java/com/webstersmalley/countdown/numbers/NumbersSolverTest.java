@@ -40,6 +40,23 @@ public class NumbersSolverTest {
 
     }
 
+    @Test
+    public void testPermuter() {
+        NumbersSolver solver = new NumbersSolver();
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(9);
+        numbers.add(8);
+        numbers.add(50);
+    }
+
+    @Test
+    public void numbersSolverNotUsingAllNumbersTest() {
+
+        NumbersBean bean = new NumbersBean("75,50,8,3,9,8,979");
+        NumbersSolver solver = new NumbersSolver();
+        List<NumbersSolution> solutions = solver.solve(bean, 0);
+        assertEquals(1, solutions.size());
+    }
 
     @Test
     public void numbersSolverTest() {
@@ -48,7 +65,7 @@ public class NumbersSolverTest {
         NumbersSolver solver = new NumbersSolver();
         List<NumbersSolution> solutions = solver.solve(bean, 0);
 
-        assertEquals(2, solutions.size());
+        assertEquals(1, solutions.size());
 
     }
 
