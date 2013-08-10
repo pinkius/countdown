@@ -20,7 +20,7 @@
     <groupId>com.webstersmalley.countdown</groupId>
     <artifactId>countdown</artifactId>
     <packaging>war</packaging>
-    <version>1.1</version>
+    <version>1.2-SNAPSHOT</version>
     <name>countdown solver</name>
     <scm>
         <connection>scm:git:git@github.com:pinkius/countdown.git</connection>
