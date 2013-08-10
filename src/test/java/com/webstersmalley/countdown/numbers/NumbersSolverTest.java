@@ -36,7 +36,7 @@ public class NumbersSolverTest {
         NumbersSolver solver = new NumbersSolver();
         Set<Node> nodes = solver.getNodes(input);
 
-        assertEquals(16, nodes.size());
+        assertEquals(17, nodes.size());
 
     }
 

@@ -24,20 +24,25 @@ public class CalculationNode implements Node {
     private Operator operator;
 
     public CalculationNode(Node nodeA, Node nodeB, Operator operator) {
-        if (nodeA.getValue() < nodeB.getValue()) {
-            this.nodeA = nodeA;
-            this.nodeB = nodeB;
-        } else if (nodeA.getValue() > nodeB.getValue()) {
-            this.nodeA = nodeB;
-            this.nodeB = nodeA;
-        } else {
-            if (nodeA.getComplexity() < nodeB.getComplexity()) {
+        if (operator == Operator.TIMES || operator == Operator.PLUS) {
+            if (nodeA.getValue() < nodeB.getValue()) {
                 this.nodeA = nodeA;
                 this.nodeB = nodeB;
-            } else {
+            } else if (nodeA.getValue() > nodeB.getValue()) {
                 this.nodeA = nodeB;
                 this.nodeB = nodeA;
+            } else {
+                if (nodeA.getComplexity() < nodeB.getComplexity()) {
+                    this.nodeA = nodeA;
+                    this.nodeB = nodeB;
+                } else {
+                    this.nodeA = nodeB;
+                    this.nodeB = nodeA;
+                }
             }
+        } else {
+            this.nodeA = nodeA;
+            this.nodeB = nodeB;
         }
 
         this.operator = operator;
