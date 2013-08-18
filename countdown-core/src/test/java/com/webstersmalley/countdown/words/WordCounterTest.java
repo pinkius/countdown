@@ -43,7 +43,7 @@ public class WordCounterTest {
 
     @Test
     public void testWordCounter() {
-        ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+        ApplicationContext ac = new ClassPathXmlApplicationContext("countdown.xml");
         wc = (WordCounter) ac.getBean("wordCounter");
 
         checkMatches("LEAWH", "WHALE", 1);

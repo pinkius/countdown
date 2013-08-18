@@ -49,6 +49,8 @@ public class JdbcCountdownDao implements CountdownDao {
         String sql = "insert into words (theWord, length, countA, countB, countC, countD, countE, countF, countG, countH, countI, countJ, countK, countL, countM, countN, countO, countP, countQ, countR, countS, countT, countU, countV, countW, countX, countY, countZ) values (:theWord, :length, :countA, :countB, :countC, :countD, :countE, :countF, :countG, :countH, :countI, :countJ, :countK, :countL, :countM, :countN, :countO, :countP, :countQ, :countR, :countS, :countT, :countU, :countV, :countW, :countX, :countY, :countZ)";
 
         SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(word);
+
+        System.out.println(namedParameterJdbcTemplate);
         namedParameterJdbcTemplate.update(sql, namedParameters);
     }
 
@@ -58,6 +60,7 @@ public class JdbcCountdownDao implements CountdownDao {
         RowMapper mapper = new WordRowMapper();
         String sql = "select theWord from words where length <= :length and countA <= :countA and  countB <= :countB and countC <= :countC and countD <= :countD and countE <= :countE and countF <= :countF and countG <= :countG and countH <= :countH and countI <= :countI and countJ <= :countJ and countK <= :countK and countL <= :countL and countM <= :countM and countN <= :countN and countO <= :countO and countP <= :countP and countQ <= :countQ and countR <= :countR and countS <= :countS and countT <= :countT and countU <= :countU and countV <= :countV and countW <= :countW and countX <= :countX and countY <= :countY and countZ <= :countZ";
         SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(word);
+        System.out.println(namedParameterJdbcTemplate);
         return namedParameterJdbcTemplate.query(sql, namedParameters, mapper);
     }
 }
