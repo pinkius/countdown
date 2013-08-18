@@ -51,15 +51,28 @@
     <body>
     <div id="wrap">
         <div id="header">Webster-Smalley Countdown Solver</div>
-        <form id="lettersForm" action="solveLetters.html" method="POST" target="resultsFrame">
-            Letters: <input id="letters" name="letters" onKeyUp="document.getElementById('lettersForm').submit()" value="GREYHOUND"></input>
-        </form>
-        <form id="numbersForm" action="solveNumbers.html" method="POST" target="resultsFrame">
-            Numbers: <input id="numbers" name="numbers" value="1,2,3,4,5,6,100"></input>
-        </form>
+        Letters: <input id="letters" name="letters" onKeyUp="loadLetters()" value="GREYHOUND"></input>
+        Numbers: <input id="numbers" name="numbers" onKeyUp="loadNumbers()" value="1,2,3,4,5,6,100"></input>
 
         <iframe src="about:blank" id="resultsFrame"></iframe>
         <div id="bottom">Not affiliated with Countdown in any way.</div>
     </div>
+    <script>
+        var lastLetters = "";
+        var lastNumbers = "";
+        function loadLetters() {
+            if (document.getElementById('resultsFrame').src.indexOf("solveLetters") <0 || lastLetters != document.getElementById('letters').value) {
+                lastLetters = document.getElementById('letters').value;
+                document.getElementById('resultsFrame').src = "solveLetters.html?letters=" + document.getElementById('letters').value;
+            }
+        }
+        function loadNumbers() {
+            if (document.getElementById('resultsFrame').src.indexOf("solveNumbers") <0 || lastNumbers != document.getElementById('numbers').value) {
+                lastNumbers = document.getElementById('numbers').value;
+                document.getElementById('resultsFrame').src = "solveNumbers.html?numbers=" + document.getElementById('numbers').value;
+            }
+
+        }
+    </script>
     </body>
 </html>
